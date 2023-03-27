@@ -1,14 +1,16 @@
-import 'package:client_server/article.dart';
+// To parse this JSON data, do
+//
+//     final article = articleFromJson(jsonString);
+
+import 'dart:convert';
+
+List<Article> articleFromJson(String str) =>
+    List<Article>.from(json.decode(str).map((x) => Article.fromJson(x)));
+
+String articleToJson(List<Article> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Article {
-  late String author;
-  late String title;
-  late String description;
-  late String url;
-  late String urlToImage;
-  late String publishedAt;
-  late String content;
-
   Article({
     required this.author,
     required this.title,
@@ -19,5 +21,31 @@ class Article {
     required this.content,
   });
 
-  static fromJson(json) {}
+  String author;
+  String title;
+  String description;
+  String url;
+  String urlToImage;
+  DateTime publishedAt;
+  String content;
+
+  factory Article.fromJson(Map<String, dynamic> json) => Article(
+        author: json["author"],
+        title: json["title"],
+        description: json["description"],
+        url: json["url"],
+        urlToImage: json["urlToImage"],
+        publishedAt: DateTime.parse(json["publishedAt"]),
+        content: json["content"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "author": author,
+        "title": title,
+        "description": description,
+        "url": url,
+        "urlToImage": urlToImage,
+        "publishedAt": publishedAt.toIso8601String(),
+        "content": content,
+      };
 }

@@ -21,7 +21,7 @@ class NewsListPage extends StatelessWidget {
           return ListView.builder(
             itemCount: articles.length,
             itemBuilder: (context, index) {
-              return _buildArticleItem(context, articles[index]);
+              return _buildArticleItem(context, articles[index]!);
             },
           );
         },
