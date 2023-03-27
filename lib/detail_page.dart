@@ -1,3 +1,4 @@
+import 'package:client_server/web_view.dart';
 import 'package:flutter/material.dart';
 
 import 'article.dart';
@@ -45,7 +46,14 @@ class ArticleDetailPage extends StatelessWidget {
                   SizedBox(height: 10),
                   ElevatedButton(
                     child: Text('Read more'),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ArticleWebView(
+                                    url: article.url,
+                                  )));
+                    },
                   ),
                 ],
               ),

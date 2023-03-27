@@ -48,8 +48,12 @@ Widget _buildArticleItem(BuildContext context, Article article) {
     title: Text(article.title),
     subtitle: Text(article.author),
     onTap: () {
-      Navigator.pushNamed(context, ArticleDetailPage.routeName,
-          arguments: article.url);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ArticleDetailPage(
+                    article: article,
+                  )));
     },
   );
 }
